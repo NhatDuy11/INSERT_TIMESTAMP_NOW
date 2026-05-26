@@ -1,0 +1,40 @@
+2026.05.22 11:25:43 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at e:\INSERT_TIMESTAMP_NOW\.metals\lsp.trace.json or C:\Users\Admin\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2026.05.22 11:25:47 INFO  logging to files E:\INSERT_TIMESTAMP_NOW\.metals\metals.log
+2026.05.22 11:25:47 INFO  Started: Metals version 1.6.7 in folders 'E:\INSERT_TIMESTAMP_NOW' for client Visual Studio Code 1.121.0.
+2026.05.22 11:25:47 INFO  time: initialize in 0.38s
+2026.05.22 11:25:47 INFO  Memory monitor started
+2026.05.22 11:25:50 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.05.22 11:25:54 WARN  no build target for: E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java
+2026.05.22 11:26:00 INFO  restarted 0 presentation compilers
+2026.05.22 11:26:50 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:53 WARN  no build target for: E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java
+May 22, 2026 11:26:53 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2026.05.22 11:26:53 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:53 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:55 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:55 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+May 22, 2026 11:26:55 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 5
+2026.05.22 11:26:55 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:55 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:55 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:55 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:56 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:56 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:56 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:57 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:56 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:57 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:26:57 INFO  Created report: Optional[file:///E:/INSERT_TIMESTAMP_NOW/src/main/java/com/github/kafka/connect/smt/InsertSinkTimestamp.java]
+2026.05.22 11:26:57 INFO  empty definition using pc, found symbol in pc: _empty_/Schema#doc# (full report at: "E:\INSERT_TIMESTAMP_NOW\.metals\.reports\metals-full\2026-05-22\r_empty-definition_11-26-57-286.md")
+2026.05.22 11:26:57 INFO  empty definition using pc, found symbol in pc: _empty_/Schema#doc# (full report at: "E:\INSERT_TIMESTAMP_NOW\.metals\.reports\metals-full\2026-05-22\r_empty-definition_11-26-57-286.md")
+2026.05.22 11:26:58 INFO  empty definition using pc, found symbol in pc: _empty_/Schema#doc# (full report at: "E:\INSERT_TIMESTAMP_NOW\.metals\.reports\metals-full\2026-05-22\r_empty-definition_11-26-57-286.md")
+2026.05.22 11:26:58 INFO  empty definition using pc, found symbol in pc: _empty_/Schema#doc# (full report at: "E:\INSERT_TIMESTAMP_NOW\.metals\.reports\metals-full\2026-05-22\r_empty-definition_11-26-57-286.md")
+2026.05.22 11:26:58 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:29:00 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:29:53 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+2026.05.22 11:31:05 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.
+May 22, 2026 11:31:05 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 23
+2026.05.22 11:31:19 INFO  no build target found for E:\INSERT_TIMESTAMP_NOW\src\main\java\com\github\kafka\connect\smt\InsertSinkTimestamp.java. Using fallback presentation compiler.

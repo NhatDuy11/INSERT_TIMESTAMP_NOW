@@ -400,18 +400,15 @@ class InsertSinkTimestampTest {
         }
 
         @Test
-        @DisplayName("cache should handle SCHEMA_CACHE_CAPACITY + 1 distinct schemas without error")
-        void shouldNotErrorWhenCacheOverflows() {
-            int overflow = InsertSinkTimestamp.SCHEMA_CACHE_CAPACITY + 1;
-
-            for (int i = 0; i < overflow; i++) {
-                // Each iteration uses a brand-new Schema instance → cache pressure
+        @DisplayName("cache should handle 300 distinct schemas without error (self-sizing weakKeys cache)")
+        void shouldNotErrorWithManyDistinctSchemas() {
+            // 300 > any previous hardcoded limit; weakKeys+softValues cache is unbounded by design
+            for (int i = 0; i < 300; i++) {
                 Schema s = SchemaBuilder.struct().field("f" + i, Schema.INT32_SCHEMA).build();
                 Struct struct = new Struct(s).put("f" + i, i);
                 SinkRecord out = smt.apply(sinkRecordWithSchema(s, struct));
                 assertThat(out.valueSchema().field(DEFAULT_FIELD)).isNotNull();
             }
-            // If we reach here the LRU eviction worked correctly — no OOME or exception
         }
     }
 
@@ -431,9 +428,10 @@ class InsertSinkTimestampTest {
         }
 
         @Test
-        @DisplayName("SCHEMA_CACHE_CAPACITY constant should be 64")
-        void schemaCacheCapacityConstant() {
-            assertThat(InsertSinkTimestamp.SCHEMA_CACHE_CAPACITY).isEqualTo(64);
+        @DisplayName("config() should expose FIELD_CONFIG key in CONFIG_DEF")
+        void configDefShouldContainFieldConfig() {
+            assertThat(InsertSinkTimestamp.CONFIG_DEF.configKeys())
+                    .containsKey(InsertSinkTimestamp.FIELD_CONFIG);
         }
     }
 
