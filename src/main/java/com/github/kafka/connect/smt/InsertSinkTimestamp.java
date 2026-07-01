@@ -13,10 +13,6 @@ import org.apache.kafka.connect.transforms.Transformation;
 import org.apache.kafka.connect.transforms.util.SimpleConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.Instant;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -33,9 +29,10 @@ import java.util.Map;
  * <li><b>Schema-ful (Struct)</b>: field is a Kafka Connect {@link Timestamp} logical type
  * ({@code org.apache.kafka.connect.data.Timestamp}), which maps to a native
  * {@code TIMESTAMP} column in Apache Iceberg / Dremio — no string casting needed.</li>
- * <li><b>Schemaless (Map)</b>: field is a {@link String} formatted as
- * {@code yyyy-MM-dd HH:mm:ss.SSS} (UTC). This produces a human-readable,
- * SQL-friendly timestamp that most downstream sinks can parse directly.</li>
+ * <li><b>Schemaless (Map)</b>: field is a raw {@code long} epoch-millis (UTC).
+ * A numeric epoch is emitted rather than a formatted string so downstream sinks
+ * receive an unambiguous instant; if a formatted string is required, chain Kafka
+ * Connect's built-in {@code TimestampConverter} SMT after this one.</li>
  * </ul>
  *
  * <h2>Schema cache</h2>
@@ -75,14 +72,6 @@ public abstract class InsertSinkTimestamp<R extends ConnectRecord<R>>
 
     static final String FIELD_CONFIG = "sink.timestamp.field";
 
-    /**
-     * Timestamp formatter for schemaless (Map) records.
-     * Produces strings like {@code 2026-03-12 14:05:28.123} (UTC).
-     * {@link DateTimeFormatter} is immutable and thread-safe.
-     */
-    private static final DateTimeFormatter SINK_TS_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS").withZone(ZoneOffset.UTC);
-
     // -----------------------------------------------------------------------
     // Config definition
     // -----------------------------------------------------------------------
@@ -97,8 +86,8 @@ public abstract class InsertSinkTimestamp<R extends ConnectRecord<R>>
                     "Name of the field to insert.\n"
                             + "  - Schema-ful records: field type = Kafka Connect Timestamp logical type "
                             + "(UTC epoch-ms → Iceberg TIMESTAMP).\n"
-                            + "  - Schemaless records: field type = String, "
-                            + "formatted as 'yyyy-MM-dd HH:mm:ss.SSS' (UTC).");
+                            + "  - Schemaless records: field type = long, "
+                            + "raw epoch-millis (UTC).");
 
     // -----------------------------------------------------------------------
     // Runtime state
@@ -251,10 +240,10 @@ public abstract class InsertSinkTimestamp<R extends ConnectRecord<R>>
      * Handles <b>schemaless</b> (Map) records.
      *
      * <p>
-     * Inserts the sink timestamp as a <b>formatted String</b>
-     * ({@code yyyy-MM-dd HH:mm:ss.SSS}, UTC) under the configured field name.
-     * A String is chosen over a raw epoch-long because schemaless JSON converters
-     * would serialize {@code Date} as an opaque millisecond value.
+     * Inserts the sink timestamp as a raw {@code long} epoch-millis (UTC) under the
+     * configured field name. A numeric epoch is emitted rather than a formatted string;
+     * if a formatted string is required, chain Kafka Connect's built-in
+     * {@code TimestampConverter} SMT after this one.
      *
      * <p>
      * The result map is a {@link LinkedHashMap} to preserve field insertion order,
@@ -274,7 +263,7 @@ public abstract class InsertSinkTimestamp<R extends ConnectRecord<R>>
 
         final Map<String, Object> original = (Map<String, Object>) rawValue;
         final Map<String, Object> updated = new LinkedHashMap<>(original);
-        updated.put(fieldName, SINK_TS_FORMATTER.format(Instant.ofEpochMilli(epochMs)));
+        updated.put(fieldName, epochMs);
 
         return newRecord(record, null, updated);
     }

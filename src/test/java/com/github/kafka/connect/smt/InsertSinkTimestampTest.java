@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -164,17 +162,14 @@ class InsertSinkTimestampTest {
             assertThat(outMap.get("id")).isEqualTo(10);
             assertThat(outMap.get("name")).isEqualTo("world");
 
-            // Schemaless timestamp is now a String in format yyyy-MM-dd HH:mm:ss.SSS (UTC)
+            // Schemaless timestamp is now a raw long epoch-millis (UTC)
             Object tsValue = outMap.get(DEFAULT_FIELD);
-            assertThat(tsValue).isInstanceOf(String.class);
+            assertThat(tsValue).isInstanceOf(Long.class);
 
-            String tsStr = (String) tsValue;
-            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-            LocalDateTime parsed = LocalDateTime.parse(tsStr, fmt);  // must not throw
-            assertThat(parsed).isNotNull();
+            long epochMs = (Long) tsValue;
 
             // Value should be close to now (within 5 seconds)
-            assertThat(parsed.toInstant(java.time.ZoneOffset.UTC))
+            assertThat(java.time.Instant.ofEpochMilli(epochMs))
                     .isCloseTo(java.time.Instant.now(), within(5, SECONDS));
         }
 
